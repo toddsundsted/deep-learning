@@ -1,0 +1,9 @@
+name: manipulate-data-the-mxnet-way-with-ndarray
+version: 0.1.0
+
+dependencies:
+  mxnet:
+    github: toddsundsted/mxnet.cr
+    branch: master
+
+license: Apache License, Version 2.0
