@@ -1,0 +1,18 @@
+name: probability-and-statistics
+version: 0.1.0
+
+dependencies:
+  mxnet:
+    github: toddsundsted/mxnet.cr
+    branch: master
+  stumpy_png:
+    github: stumpycr/stumpy_png
+    branch: master
+  ishi:
+    github: toddsundsted/ishi
+    branch: master
+  iterm2:
+    github: toddsundsted/iterm2
+    branch: master
+
+license: Apache License, Version 2.0
