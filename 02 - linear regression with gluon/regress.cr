@@ -47,7 +47,7 @@ epochs.times do |epoch|
       end
     loss.backward
     trainer.step(batch_size)
-    cumulative_loss += MXNet::NDArray.mean(loss).as_scalar
+    cumulative_loss += loss.mean.as_scalar
   end
   puts cumulative_loss / num_batches
 end

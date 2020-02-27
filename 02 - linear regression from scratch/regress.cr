@@ -30,11 +30,11 @@ params = [w, b]
 params.each(&.attach_grad)
 
 def net(x, w, b)
-  MXNet::NDArray.dot(x, w) + b
+  x.dot(w) + b
 end
 
 def square_loss(yhat, y)
-  MXNet::NDArray.mean((yhat - y) ** 2)
+  ((yhat - y) ** 2).mean
 end
 
 def sgd(params, lr)

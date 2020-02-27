@@ -32,7 +32,7 @@ a = MXNet::NDArray.zeros([5, 4])
 puts a
 
 x = MXNet::NDArray.array(0...20)
-a = x.reshape(shape: [5, 4])
+a = x.reshape([5, 4])
 puts a
 
 puts a[2, 3]
@@ -44,7 +44,7 @@ puts a.transpose
 
 # Tensors
 
-x = MXNet::NDArray.array(0...24).reshape(shape: [2, 3, 4])
+x = MXNet::NDArray.array(0...24).reshape([2, 3, 4])
 puts x.shape
 puts x
 
