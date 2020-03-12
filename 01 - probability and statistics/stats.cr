@@ -26,11 +26,11 @@ puts estimates[.., 10]
 puts estimates[.., 100]
 
 Ishi.new(width: 70) do
-  plot(estimates[0, ..].to_a(Float32), title: "Estimated P(die=1)")
-  plot(estimates[1, ..].to_a(Float32), title: "Estimated P(die=2)")
-  plot(estimates[2, ..].to_a(Float32), title: "Estimated P(die=3)")
-  plot(estimates[3, ..].to_a(Float32), title: "Estimated P(die=4)")
-  plot(estimates[4, ..].to_a(Float32), title: "Estimated P(die=5)")
-  plot(estimates[5, ..].to_a(Float32), title: "Estimated P(die=6)")
-  plot("1.0/6.0")
+  plot(estimates[0], title: "Estimated P(die=1)")
+  plot(estimates[1], title: "Estimated P(die=2)")
+  plot(estimates[2], title: "Estimated P(die=3)")
+  plot(estimates[3], title: "Estimated P(die=4)")
+  plot(estimates[4], title: "Estimated P(die=5)")
+  plot(estimates[5], title: "Estimated P(die=6)")
+  plot("1.0/6.0", "black")
 end
