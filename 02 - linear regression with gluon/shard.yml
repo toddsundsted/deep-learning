@@ -5,5 +5,11 @@ dependencies:
   mxnet:
     github: toddsundsted/mxnet.cr
     branch: master
+  ishi:
+    github: toddsundsted/ishi
+    branch: master
+  iterm2:
+    github: toddsundsted/iterm2
+    branch: master
 
 license: Apache License, Version 2.0

@@ -1,5 +1,6 @@
 require "mxnet"
 require "mxnet/gluon"
+require "ishi/iterm2"
 
 MXNet::Random.seed(1)
 
@@ -23,6 +24,10 @@ x = MXNet::NDArray.random_normal(shape: [num_examples, num_inputs], ctx: data_ct
 noise = 0.1 * MXNet::NDArray.random_normal(shape: [num_examples], ctx: data_ctx)
 y = real_fn(x) + noise
 
+Ishi.new(width: 70) do
+  scatter(x[.., 1], y)
+end
+
 w = MXNet::NDArray.random_normal(shape: [num_inputs, num_outputs], ctx: model_ctx)
 b = MXNet::NDArray.random_normal(shape: [num_outputs], ctx: model_ctx)
 params = [w, b]
@@ -45,6 +50,20 @@ def sgd(params, lr)
   end
 end
 
+def plot(losses = losses, x = x, w = w, b = b)
+  figure = Ishi.new
+  figure.canvas_size(1280, 480)
+  charts = figure.charts(1, 2)
+  charts[0].plot(losses, title: "Loss")
+  charts[1].plot(x[..100, 1], net(x[..100, ..], w, b)[.., 0], "or", title: "Estimated")
+  charts[1].plot(x[..100, 1], real_fn(x[..100, ..]), "+g", title: "Real")
+  figure.show(width: 140)
+end
+
+losses = [] of Float64
+
+plot
+
 train_data = MXNet::Gluon::Data::DataLoader(Tuple(MXNet::NDArray, MXNet::NDArray), Tuple(MXNet::NDArray, MXNet::NDArray)).new(
   MXNet::Gluon::Data::ArrayDataset.new(x, y),
   batch_size: batch_size, shuffle: true
@@ -64,8 +83,11 @@ epochs.times do |epoch|
     sgd(params, learning_rate)
     cumulative_loss += loss.as_scalar
   end
+  losses << cumulative_loss / num_batches
   puts cumulative_loss / num_batches
 end
+
+plot
 
 params.each do |param|
   puts param

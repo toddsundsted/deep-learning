@@ -1,5 +1,6 @@
 require "mxnet"
 require "mxnet/gluon"
+require "ishi/iterm2"
 
 MXNet::Random.seed(1)
 
@@ -35,6 +36,8 @@ train_data = MXNet::Gluon::Data::DataLoader(Tuple(MXNet::NDArray, MXNet::NDArray
   batch_size: batch_size, shuffle: true
 )
 
+losses = [] of Float64
+
 epochs.times do |epoch|
   cumulative_loss = 0
   train_data.rewind.each do |(data, label)|
@@ -49,7 +52,12 @@ epochs.times do |epoch|
     trainer.step(batch_size)
     cumulative_loss += loss.mean.as_scalar
   end
+  losses << cumulative_loss / num_batches
   puts cumulative_loss / num_batches
+end
+
+Ishi.new(width: 70) do
+  plot(losses, title: "Loss")
 end
 
 net.collect_params.each do |_, param|
