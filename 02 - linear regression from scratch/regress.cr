@@ -50,7 +50,9 @@ def sgd(params, lr)
   end
 end
 
-def plot(losses = losses, x = x, w = w, b = b)
+losses = [] of Float64
+
+def plot(losses, x, w, b)
   figure = Ishi.new
   figure.canvas_size(1280, 480)
   charts = figure.charts(1, 2)
@@ -60,9 +62,7 @@ def plot(losses = losses, x = x, w = w, b = b)
   figure.show(width: 140)
 end
 
-losses = [] of Float64
-
-plot
+plot(losses, x, w, b)
 
 train_data = MXNet::Gluon::Data::DataLoader(Tuple(MXNet::NDArray, MXNet::NDArray), Tuple(MXNet::NDArray, MXNet::NDArray)).new(
   MXNet::Gluon::Data::ArrayDataset.new(x, y),
@@ -87,7 +87,7 @@ epochs.times do |epoch|
   puts cumulative_loss / num_batches
 end
 
-plot
+plot(losses, x, w, b)
 
 params.each do |param|
   puts param
