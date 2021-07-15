@@ -3,4 +3,4 @@ implemented with [mxnet.cr](https://github.com/toddsundsted/mxnet.cr).
 
 # Installation
 
-All exercises require [MXNet](https://mxnet.incubator.apache.org/).
+All exercises require [MXNet](https://mxnet.apache.org/).
