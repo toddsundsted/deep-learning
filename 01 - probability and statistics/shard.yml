@@ -4,15 +4,12 @@ version: 0.1.0
 dependencies:
   mxnet:
     github: toddsundsted/mxnet.cr
-    branch: master
-  stumpy_png:
-    github: stumpycr/stumpy_png
-    branch: master
+    branch: main
   ishi:
     github: toddsundsted/ishi
-    branch: master
+    branch: main
   iterm2:
     github: toddsundsted/iterm2
-    branch: master
+    branch: main
 
 license: Apache License, Version 2.0
